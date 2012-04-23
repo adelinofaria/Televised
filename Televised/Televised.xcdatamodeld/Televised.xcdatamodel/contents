@@ -1,46 +1,60 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="878" systemVersion="11D50" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Aka" syncable="YES">
-        <attribute name="aka" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="Aka" representedClassName="Aka" syncable="YES">
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="aka_show" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Show" inverseName="show_aka" inverseEntity="Show" syncable="YES"/>
     </entity>
     <entity name="Episode" representedClassName="Episode" syncable="YES">
         <attribute name="airdate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="episodeid" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="epnum" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="prodnum" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="prodnum" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="screencap" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="seasonid" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="seasonnum" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="episode_show" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Show" inverseName="show_episode" inverseEntity="Show" syncable="YES"/>
+        <relationship name="episode_season" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Season" inverseName="season_episode" inverseEntity="Season" syncable="YES"/>
     </entity>
-    <entity name="Genere" syncable="YES">
-        <attribute name="genere" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="genere_show" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Show" inverseName="show_genere" inverseEntity="Show" syncable="YES"/>
+    <entity name="Genre" representedClassName="Genre" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="genre_show" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Show" inverseName="show_genre" inverseEntity="Show" syncable="YES"/>
+    </entity>
+    <entity name="Network" representedClassName="Network" syncable="YES">
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="network_show" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Show" inverseName="show_network" inverseEntity="Show" syncable="YES"/>
+    </entity>
+    <entity name="Season" representedClassName="Season" syncable="YES">
+        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="season_episode" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Episode" inverseName="episode_season" inverseEntity="Episode" syncable="YES"/>
+        <relationship name="season_show" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Show" inverseName="show_season" inverseEntity="Show" syncable="YES"/>
     </entity>
     <entity name="Show" representedClassName="Show" syncable="YES">
-        <attribute name="airtime" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="classification" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="airday" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="classification" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ended" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="network" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="runtime" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="seasons" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="showid" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="started" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="show_aka" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Aka" inverseName="aka_show" inverseEntity="Aka" syncable="YES"/>
-        <relationship name="show_episode" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Episode" inverseName="episode_show" inverseEntity="Episode" syncable="YES"/>
-        <relationship name="show_genere" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Genere" inverseName="genere_show" inverseEntity="Genere" syncable="YES"/>
+        <relationship name="show_genre" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Genre" inverseName="genre_show" inverseEntity="Genre" syncable="YES"/>
+        <relationship name="show_network" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Network" inverseName="network_show" inverseEntity="Network" syncable="YES"/>
+        <relationship name="show_season" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Season" inverseName="season_show" inverseEntity="Season" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Episode" positionX="160" positionY="192" width="128" height="45"/>
-        <element name="Show" positionX="160" positionY="192" width="128" height="285"/>
-        <element name="Aka" positionX="331" positionY="135" width="128" height="75"/>
-        <element name="Genere" positionX="619" positionY="339" width="128" height="75"/>
+        <element name="Aka" positionX="-191" positionY="63" width="128" height="75"/>
+        <element name="Episode" positionX="-65" positionY="441" width="128" height="45"/>
+        <element name="Genre" positionX="-288" positionY="162" width="128" height="75"/>
+        <element name="Network" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="Season" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="Show" positionX="-18" positionY="66" width="128" height="285"/>
     </elements>
 </model>

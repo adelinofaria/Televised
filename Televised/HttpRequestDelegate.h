@@ -10,6 +10,6 @@
 
 @protocol HttpRequestDelegate <NSObject>
 
-- (void)requestReturn:(NSDictionary *)result fromRequest:(NSDictionary *)request;
+- (void)requestReturn:(NSData *)result fromRequest:(NSDictionary *)request;
 
 @end

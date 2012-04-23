@@ -2,59 +2,25 @@
 //  Episode.m
 //  Televised
 //
-//  Created by Adelino Faria on 2/24/12.
+//  Created by Adelino Faria on 4/19/12.
 //  Copyright (c) 2012 Rabid Cat. All rights reserved.
 //
 
 #import "Episode.h"
+#import "Season.h"
 
 
 @implementation Episode
 
-@dynamic episodeid;
-@dynamic seasonid;
-@dynamic prodnum;
 @dynamic airdate;
+@dynamic epnum;
 @dynamic link;
-@dynamic title;
+@dynamic prodnum;
 @dynamic rating;
 @dynamic screencap;
-@dynamic episode_show;
-
-- (id)parseXML:(NSData *)data
-{
-    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
-    
-    parser.delegate = self;
-    parser.shouldResolveExternalEntities = YES;
-    
-    if ([parser parse])
-    {
-        return data;
-    }
-    else
-        return data;
-}
-
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
-{
-    if([elementName isEqualToString:@"episode"])
-    {
-        
-    }
-}
-
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
-    
-}
-
--(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-{
-    if([elementName isEqualToString:@"episode"])
-    {
-        
-    }
-}
+@dynamic seasonnum;
+@dynamic title;
+@dynamic number;
+@dynamic episode_season;
 
 @end

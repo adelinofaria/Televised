@@ -8,11 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HttpRequestXMLParser : NSObject <NSXMLParserDelegate>
+typedef enum
 {
+    XMLParserFileStructureSearch,
+    XMLParserFileStructureShowInfo,
+    XMLParserFileStructureEpisodeList,
+    XMLParserFileStructureEpisodeInfo
+} XMLParserFileStructure;
+
+@interface HttpRequestXMLParser : NSObject <NSXMLParserDelegate> {
     NSString *capturedString;
+    NSDictionary *requestInformation;
+    NSDictionary *currentAttributeDictionary;
+    NSMutableDictionary *newObjectsDictionary;
+    XMLParserFileStructure structure;
 }
 
-- (id)parseXML:(NSData *)data;
+- (id)parseXML:(NSData *)data fileStructure:(XMLParserFileStructure)fileStructure requestInfo:(NSDictionary *)requestInfo;
 
 @end

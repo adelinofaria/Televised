@@ -7,10 +7,9 @@
 //
 
 #import "HttpRequest.h"
-#import "HttpRequestXMLParser.h"
 
 
-static BOOL debug = YES;
+static BOOL debug = NO;
 
 @implementation HttpRequest
 
@@ -58,16 +57,16 @@ static BOOL debug = YES;
     
     switch (type)
     {
-        case GET:
+        case HttpConnectionTypeGET:
             [request setHTTPMethod:@"GET"];
             break;
-        case POST:
+        case HttpConnectionTypePOST:
             [request setHTTPMethod:@"POST"];
             break;
-        case PUT:
+        case HttpConnectionTypePUT:
             [request setHTTPMethod:@"PUT"];
             break;
-        case DELETE:
+        case HttpConnectionTypeDELETE:
             [request setHTTPMethod:@"DELETE"];
             break;
             
@@ -121,11 +120,6 @@ static BOOL debug = YES;
     return returnData;
 }
 
-- (id)requestDecode:(NSData *)result
-{
-    return [[[HttpRequestXMLParser alloc] init] parseXML:result];
-}
-
 - (void)requestReturn:(id<HttpRequestDelegate>)delegate result:(NSData *)result fromRequest:(NSDictionary *)dictionary
 {
     if (debug)
@@ -144,7 +138,7 @@ static BOOL debug = YES;
     else
         didNoticeNoConnection = FALSE;
     
-    [self->delegate requestReturn:[self requestDecode:result] fromRequest:self->dictionary];
+    [self->delegate requestReturn:result fromRequest:self->dictionary];
 }
 
 - (void)syncRequestThread:(HttpRequest *)request
@@ -195,7 +189,7 @@ static BOOL debug = YES;
     if (debug)
         NSLog(@"%@", [[NSString alloc] initWithData:result encoding:NSASCIIStringEncoding]);
     
-    return [request requestDecode:result];
+    return result;
 }
 
 + (void)performAsyncRequest:(NSString *)url requestType:(HttpConnectionType)type dictionary:(NSDictionary *)dictionary delegate:(id<HttpRequestDelegate>)delegate

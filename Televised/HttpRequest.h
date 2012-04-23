@@ -11,10 +11,10 @@
 
 typedef enum
 {
-    GET,
-    POST,
-    PUT,
-    DELETE
+    HttpConnectionTypeGET,
+    HttpConnectionTypePOST,
+    HttpConnectionTypePUT,
+    HttpConnectionTypeDELETE
 } HttpConnectionType;
 
 

@@ -2,31 +2,34 @@
 //  Show.m
 //  Televised
 //
-//  Created by Adelino Faria on 2/24/12.
+//  Created by Adelino Faria on 4/19/12.
 //  Copyright (c) 2012 Rabid Cat. All rights reserved.
 //
 
 #import "Show.h"
-#import "Episode.h"
+#import "Aka.h"
+#import "Genre.h"
+#import "Network.h"
+#import "Season.h"
 
 
 @implementation Show
 
-@dynamic showid;
-@dynamic name;
-@dynamic link;
-@dynamic seasons;
-@dynamic image;
-@dynamic started;
-@dynamic ended;
-@dynamic country;
-@dynamic status;
+@dynamic airday;
 @dynamic classification;
+@dynamic country;
+@dynamic ended;
+@dynamic image;
+@dynamic link;
+@dynamic name;
 @dynamic runtime;
-@dynamic network;
-@dynamic airtime;
-@dynamic show_genere;
+@dynamic seasons;
+@dynamic showid;
+@dynamic started;
+@dynamic status;
 @dynamic show_aka;
-@dynamic show_episode;
+@dynamic show_genre;
+@dynamic show_network;
+@dynamic show_season;
 
 @end
